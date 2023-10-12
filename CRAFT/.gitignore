@@ -1,0 +1,8 @@
+*.pyc
+*.swp
+*.pkl
+*.pth
+Results/*
+weights*
+Text-Detection/complete/config_text_recognition/transformerocr.pth
+.idea/*
