@@ -23,14 +23,14 @@ with open('data.csv', 'r') as csvinput:
         reader = csv.reader(csvinput)
         all = []
         row = next(reader)
-        row.append('10')
+        row.append('8')
         all.append(row)
         i = 0
         path = glob.glob("cutEachWord/*.jpg")
         cv_img = []
         for i in range(len(path)):
-            print('cutEachWord/65'+str(i)+'.jpg')
-            n = Image.open('cutEachWord/65'+str(i)+'.jpg')
+            print('cutEachWord/46'+str(i)+'.jpg')
+            n = Image.open('cutEachWord/46'+str(i)+'.jpg')
             print(str(detector.predict(n)))
             cv_img.append(str(detector.predict(n)))
         i = 0

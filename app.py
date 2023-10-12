@@ -34,7 +34,7 @@ def upload_image():
     uploaded_image = request.files['image']
 
     if uploaded_image:
-        # Lưu hình ảnh vào thư mục data
+        # Lưu hình ảnh vào thư mục ""data""
         image_path = os.path.join(
             app.config['UPLOAD_FOLDER'], uploaded_image.filename)
         uploaded_image.save(image_path)
