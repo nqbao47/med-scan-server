@@ -63,14 +63,3 @@ def generate_words(image_name, score_bbox, image):
                                                                                                 b_r, l_b, b_l))
                 except:
                     continue
-
-
-'''data = pd.read_csv('data.csv')
-
-start = 'slogan.jpg'
-
-for image_num in range(data.shape[0]):
-    image = cv2.imread(os.path.join(start, data['image_name'][image_num]))
-    image_name = data['image_name'][image_num].strip('.jpg')
-    score_bbox = data['word_bboxes'][image_num].split('),')
-    generate_words(image_name, score_bbox, image)'''

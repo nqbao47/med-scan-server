@@ -6,29 +6,22 @@ MIT License
 """
 
 # -*- coding: utf-8 -*-
-import sys
-import os
-import time
-import argparse
 
+
+
+
+import time
 import torch
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
 from torch.autograd import Variable
-
 from PIL import Image
-
 import cv2
 from skimage import io
 import numpy as np
 import craft_utils
 import imgproc
-import file_utils
-import json
-import zipfile
-
 from craft import CRAFT
-
 from collections import OrderedDict
 def copyStateDict(state_dict):
     if list(state_dict.keys())[0].startswith("module"):
@@ -41,13 +34,15 @@ def copyStateDict(state_dict):
         new_state_dict[name] = v
     return new_state_dict
 
+
 def test_net(net, image, text_threshold, link_threshold, low_text, cuda, poly, args, refine_net=None):
     t0 = time.time()
     # resize
     # cứ biết là lấy ra kích thước ảnh mới , tỉ lệ với chiều rộng chiều cao ảnh, kích thước bản đồ nhiệt
-    img_resized, target_ratio, size_heatmap = imgproc.resize_aspect_ratio(image, args.canvas_size, interpolation=cv2.INTER_LINEAR, mag_ratio=args.mag_ratio)
+    img_resized, target_ratio, size_heatmap = imgproc.resize_aspect_ratio(
+        image, args.canvas_size, interpolation=cv2.INTER_LINEAR, mag_ratio=args.mag_ratio)
 
-    #đây chính là lấy tỉ lệ với chiều rộng và chiều cao ảnh còn là gì thì xuống xem
+    # đây chính là lấy tỉ lệ với chiều rộng và chiều cao ảnh còn là gì thì xuống xem
     ratio_h = ratio_w = 1 / target_ratio
     # preprocessing Bước tiền xử lý
     x = imgproc.normalizeMeanVariance(img_resized)
@@ -70,37 +65,40 @@ def test_net(net, image, text_threshold, link_threshold, low_text, cuda, poly, a
         y, feature = net(x)
 
     # make score and link map
-    score_text = y[0,:,:,0].cpu().data.numpy()
-    score_link = y[0,:,:,1].cpu().data.numpy()
+    score_text = y[0, :, :, 0].cpu().data.numpy()
+    score_link = y[0, :, :, 1].cpu().data.numpy()
     # refine link
     if refine_net is not None:
         with torch.no_grad():
             y_refiner = refine_net(y, feature)
-        score_link = y_refiner[0,:,:,0].cpu().data.numpy()
+        score_link = y_refiner[0, :, :, 0].cpu().data.numpy()
 
     t0 = time.time() - t0
     t1 = time.time()
 
-    #những tham số truyền vào này này đều là tham số default từ file với pipeline
+    # những tham số truyền vào này này đều là tham số default từ file với pipeline
     # mục đích là lấy ra boxes, polys, det_scores mới
     # quá trình xử lý chưa rõ
     # Post-processing gọi hàm từ file craft_utils
     # boxes để lấy tọa độ, polys có vẻ là dương tự nhưng mà dưới dạng weight hoặc cách implement khác
     #
-    boxes, polys, det_scores = craft_utils.getDetBoxes(score_text, score_link, text_threshold, link_threshold, low_text, poly)
+    boxes, polys, det_scores = craft_utils.getDetBoxes(
+        score_text, score_link, text_threshold, link_threshold, low_text, poly)
 
     # coordinate adjustment gọi hàm từ file craft_utils
     boxes = craft_utils.adjustResultCoordinates(boxes, ratio_w, ratio_h)
     polys = craft_utils.adjustResultCoordinates(polys, ratio_w, ratio_h)
 
     for k in range(len(polys)):
-        if polys[k] is None: polys[k] = boxes[k]
+        if polys[k] is None:
+            polys[k] = boxes[k]
     t1 = time.time() - t1
 
     # render results (optional)
     render_img = score_text.copy()
     render_img = np.hstack((render_img, score_link))
     ret_score_text = imgproc.cvt2HeatmapImg(render_img)
-    if args.show_time : print("\ninfer/postproc time : {:.3f}/{:.3f}".format(t0, t1))
+    if args.show_time:
+        print("\ninfer/postproc time : {:.3f}/{:.3f}".format(t0, t1))
 
     return boxes, polys, ret_score_text, det_scores

@@ -58,16 +58,32 @@ def saveResult(img_file, img, boxes, dirname='Results', verticals=None, texts=No
 
     if not os.path.isdir(dirname):
         os.mkdir(dirname)
+
+    # Đường dẫn đến thư mục "cutEachWord"
+    folder_path = '../Text-Detection/TextRecognition/cutEachWord/'
+
+    # Kiểm tra nếu thư mục tồn tại thì xoá tất cả các tệp trong thư mục
+    if os.path.exists(folder_path):
+        for file in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, file)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)
+            except Exception as e:
+                print(f"Không thể xoá {file_path}: {e}")
+
     with open(res_file, 'w') as f:
         for i, box in enumerate(boxes):
             poly = np.array(box).astype(np.int32).reshape((-1))
             strResult = ','.join([str(p) for p in poly]) + '\r\n'
             f.write(strResult)
-            # bỏ comment đoạn này để có thể bounding box lại b
+
             poly = poly.reshape(-1, 2)
             cv2.polylines(img, [poly.reshape((-1, 1, 2))],
                           True, color=(0, 0, 255), thickness=1)
-            # ptColor = (0, 255, 255)
+            ptColor = (0, 255, 255)
             xmin = min(poly[:, 0])
             xmax = max(poly[:, 0])
             ymin = min(poly[:, 1])
@@ -82,7 +98,8 @@ def saveResult(img_file, img, boxes, dirname='Results', verticals=None, texts=No
 
             folder = '/'.join(filename.split('/')[:-1])
             # đầu tiên đây là folder cutEachWord
-            dir = '../Text-Detection/TextRecognition/cutEachWord/'
+            dir = '../TextDetection/TextRecognition/cutEachWord/'
+            # dir = 'cutEachWord/'
             if os.path.isdir(os.path.join(dir + folder)) == False:
                 os.makedirs(os.path.join(dir + folder))
             try:
