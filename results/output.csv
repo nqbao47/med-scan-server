@@ -1,40 +1,49 @@
 0,1,2,3,4,5,6,7,NewColumn
-421,9,525,9,525,21,421,21,Số ID-2309000478,NaN
-13,11,169,9,169,23,13,25,Sơ Y tè Thành Phê Cân Thế,NaN
-413,23,526,23,526,37,413,37,Mã BN: 2021014817,NaN
-14,28,166,28,166,44,14,44,BV ĐKTP CẦN THƠ,NaN
-382,38,530,40,530,55,382,54,"- Số HĐ: T09,00028/2023000",NaN
-13,47,162,47,162,61,13,61,Điện thoại: 02923.821.236,NaN
-213,53,332,53,332,73,213,73,ĐƠN THUỐC LA,NaN
-14,81,126,81,126,96,14,96,Ho tên. sử bình Nam,NaN
-294,81,470,81,470,96,294,96,Tuổi: 64 Tuổi Nam/Nữ: Nam,NaN
-14,105,130,105,130,119,14,119,Số thẻ bảo hiếm y tế:,NaN
-13,126,54,126,54,140,13,140,Địa chỉ:,NaN
-174,126,436,126,436,142,174,142,"Phướng An Cư, Quận Ninh Kiêu, Thành phố Cân Trong",NaN
-14,146,537,146,537,162,14,162,"Thành đoán: Bệnh đai thảo đường không phụ thuộc insuline, Rệnh lý tăng huyết áp, Tăng Nhiều",NaN
-14,161,340,162,339,178,14,177,Bốn hợp: Bệnh tim thiêu máu cục bộ mạn; Xơ vữa đông,NaN
-16,193,112,195,111,213,15,211,Thuốc điều trị;,NaN
-14,216,309,216,309,230,14,230,171 - Gliclazid % metformin (Glizym M 80mg + 500r,Medicine_Name
-461,216,505,216,505,228,461,228,60-Viên,NaN
-49,232,298,232,298,248,49,248,"Sảng uông 01 viên, chiều vòng 01 viên sau",NaN
-14,248,273,250,273,266,14,263,27 Metformin (Glumeferm 1000 XR 1000m),Medicine_Name
-461,250,505,250,505,264,461,264,30 Viên,NaN
-49,265,196,269,195,285,49,281,Chiếu uống 01 viên sau ăn,NaN
-14,283,228,285,227,300,14,297,Losartan (Savi Losartan 50 son,Medicine_Name
-461,285,505,285,505,297,461,297,60-Viên,NaN
-49,301,298,301,298,317,49,317,"Sảng uông 01 viên, chiều uông ll viên sau",NaN
-14,318,236,320,235,334,14,332,T Atorvastatin (Atorvastatin 10 10 m),Medicine_Name
-461,320,505,320,505,332,461,332,60-Viên,NaN
-50,333,157,337,157,353,50,349,Chiếu uống 02 viên,NaN
-13,353,197,353,197,369,13,369,15/ Clopidogre1 (RIDLOR 75ms),Medicine_Name
-461,353,505,353,505,366,461,366,30 Viên,NaN
-49,370,189,370,189,386,49,386,sáng uồng ll viên sau ăn,NaN
-14,389,197,389,197,403,14,403,57. Amlo đipin (Kavasdin 5 5mg 1995),Medicine_Name
-461,389,502,389,502,401,461,401,30 viên,NaN
-50,405,196,405,196,421,50,421,Chiều uông 01 viên sau ăn,NaN
-12,598,64,598,64,613,12,613,Lời dặn,NaN
-354,598,509,598,509,614,354,614,Ngày 05 tháng 09 năm 2023,NaN
-13,619,93,622,93,636,12,633,Toa 30 ngày,NaN
-372,619,497,621,497,636,371,634,Bác sĩ Y sĩ khám bệnh,NaN
-355,731,459,727,460,744,356,748,BS. Nguyễn Thị Khu,NaN
-14,747,200,749,199,764,14,763,Khám lai xin mang theo-đơn này,NaN
+420,10,525,10,525,24,420,24,Số ID: 2309002295,NaN
+13,13,169,13,169,26,13,26,Sở Y tê Thành Phố Cần Thơ,NaN
+413,26,525,26,525,40,413,40,Mã BN: 2018006867,NaN
+13,29,166,29,166,45,13,45,BV ĐKTP CẦN THƠ,NaN
+382,41,528,41,528,56,382,56,Số HĐ: B48.00121.202309,NaN
+13,49,162,49,162,64,13,64,Điện thoại: 02923 821.236,NaN
+213,54,332,54,332,74,213,74,ĐƠN THUỐC,NaN
+14,82,121,82,121,98,14,98,Họ tên: vũ thị y,NaN
+293,82,461,82,461,97,293,97,Tuổi: 84 Tuổi Nam Nữ,NaN
+14,106,130,106,130,122,14,122,Số thê bảo hiếm y tế,NaN
+14,129,217,129,217,144,14,144,Địa chỉ: Phường An Hòa Quận Ninh Kiêu,NaN
+14,148,534,148,534,164,14,164,"Thần đoán: Bệnh đãi thao dường không phụ thuộc insuline, Bệnh lý tănghuyệt áp; B",NaN
+14,162,520,162,520,180,14,180,xục bộ mạn; Tầng lipid máu hồn hợp; Rung nhì và cuốngnhi Suy tim ôn đinh; Các,NaN
+14,180,144,180,144,194,14,194,đồng máu đặc biệt khác,NaN
+16,210,112,212,111,229,15,227,Thuốc điều trị,NaN
+14,230,237,232,237,248,14,246,Spironolacton 'Spironelacton 23,NaN
+461,232,505,232,505,244,461,244,28-Viên,NaN
+49,248,144,248,144,265,49,265,sânguồng viên,NaN
+14,264,229,266,229,282,14,279,27. Gliclazid (Staclazide-60-MR 60mg),Medicine_Name
+461,266,505,266,505,280,461,280,56 Viên,NaN
+49,282,311,282,311,298,49,298,"sang 1 viên, chiều 1 viên, uồng trước ăn 30 phút",NaN
+13,297,257,300,257,316,13,313,- Acenocoumarol (AzENMAROL.11m 1991),NaN
+461,301,502,301,502,313,461,313,33 viên,NaN
+49,317,269,317,269,334,49,334,"đôi uồng 1 viên, tối chủ nhật uống 2 vì",NaN
+14,333,273,336,273,350,14,347,Metformin (Giumeform 1000 XR 1001,NaN
+461,336,505,336,505,348,461,348,56-Viên,NaN
+49,352,242,352,242,368,49,368,"sáng ường - viên,chiêu vông l viên",NaN
+13,368,228,370,227,386,13,383,- Losartan (savi Losatan 50 50mm,Medicine_Name
+461,370,505,370,505,384,461,384,56 Viên,NaN
+49,386,242,386,242,402,49,402,sang rồng 1 viên chiếu uống j viên,NaN
+14,402,178,405,178,420,14,417,Nebivoloi Khouma 5ms,NaN
+461,404,505,404,505,417,461,417,28 Viên,NaN
+49,421,144,421,144,437,49,437,sang uồng                                                                          vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv,NaN
+14,438,248,440,247,454,14,453,Rosuvastatin ROTINVAST 20 20,NaN
+461,440,502,440,502,452,461,452,14 viên,NaN
+49,453,159,457,158,473,48,470,chiêu vốn điện viên,NaN
+14,470,210,473,210,489,14,486,Acarbose BLUECOSE 100m,NaN
+460,473,505,473,505,486,460,486,28 Viên,NaN
+49,489,196,493,195,509,49,505,chiếu uông i viên trong đó,NaN
+354,600,509,600,509,616,354,616,Ngày 06 tháng 09 năm 2023,NaN
+12,601,64,601,64,614,12,614,Lời dặn:,NaN
+13,620,93,624,93,639,12,635,Toa: 28 ngày,NaN
+372,621,496,623,495,637,371,635,Bạc sĩ Y sĩ khám bệnh,NaN
+21,645,122,645,122,658,21,658,Chê đô ăn: G:10.2,NaN
+21,668,128,668,128,681,21,681,Sinh hoat: INR: 2.9,NaN
+21,688,173,691,173,707,21,704,Ghi chủ: jardiance 25mg,NaN
+351,733,478,731,478,748,352,750,BSCK1. Nguyễn Thị C,NaN
+13,750,200,750,200,766,13,766,Khám lại xin mang theo đơn nà,NaN

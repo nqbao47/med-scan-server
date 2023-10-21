@@ -60,7 +60,7 @@ def saveResult(img_file, img, boxes, dirname='Results', verticals=None, texts=No
         os.mkdir(dirname)
 
     # Đường dẫn đến thư mục "cutEachWord"
-    folder_path = '../Text-Detection/TextRecognition/cutEachWord/'
+    folder_path = 'D:/Luan Van/Project/med-scan-backend/TextDetection/TextRecognition/cutEachWord/'
 
     # Kiểm tra nếu thư mục tồn tại thì xoá tất cả các tệp trong thư mục
     if os.path.exists(folder_path):
@@ -98,7 +98,7 @@ def saveResult(img_file, img, boxes, dirname='Results', verticals=None, texts=No
 
             folder = '/'.join(filename.split('/')[:-1])
             # đầu tiên đây là folder cutEachWord
-            dir = '../TextDetection/TextRecognition/cutEachWord/'
+            dir = 'D:/Luan Van/Project/med-scan-backend/TextDetection/TextRecognition/cutEachWord/'
             # dir = 'cutEachWord/'
             if os.path.isdir(os.path.join(dir + folder)) == False:
                 os.makedirs(os.path.join(dir + folder))

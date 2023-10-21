@@ -18,8 +18,8 @@ config['predictor']['beamsearch'] = False
 detector = Predictor(config)
 
 # Open the input CSV file
-with open('data.csv', 'r') as csvinput:
-    with open('../../results/output.csv', 'w', encoding='utf-8') as csvoutput:
+with open('D:/Luan Van/Project/med-scan-backend/TextDetection/TextRecognition/data.csv', 'r') as csvinput:
+    with open('D:/Luan Van/Project/med-scan-backend/results/output.csv', 'w', encoding='utf-8') as csvoutput:
         writer = csv.writer(csvoutput, lineterminator='\n')
         reader = csv.reader(csvinput)
         all = []
@@ -28,11 +28,14 @@ with open('data.csv', 'r') as csvinput:
         header.append('NewColumn')  # Đặt tên cho cột mới
         all.append(header)
         i = 0
-        path = glob.glob("cutEachWord/*.jpg")
+        path = glob.glob(
+            "D:/Luan Van/Project/med-scan-backend/TextDetection/TextRecognition/cutEachWord/*.jpg")
         cv_img = []
         for i in range(len(path)):
-            print('cutEachWord/1'+str(i)+'.jpg')
-            n = Image.open('cutEachWord/1'+str(i)+'.jpg')
+            print(
+                'D:/Luan Van/Project/med-scan-backend/TextDetection/TextRecognition/cutEachWord/1'+str(i)+'.jpg')
+            n = Image.open(
+                'D:/Luan Van/Project/med-scan-backend/TextDetection/TextRecognition/cutEachWord/1'+str(i)+'.jpg')
             print(str(detector.predict(n)))
             cv_img.append(str(detector.predict(n)))
         i = 0

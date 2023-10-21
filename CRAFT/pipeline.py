@@ -33,7 +33,7 @@ def str2bool(v):
 '''
 # CRAFT
 parser = argparse.ArgumentParser(description='CRAFT Text Detection')
-parser.add_argument('--trained_model', default='weights/craft_mlt_25k.pth',
+parser.add_argument('--trained_model', default='D:\Luan Van\Project\med-scan-backend\CRAFT\weights\craft_mlt_25k.pth',
                     type=str, help='pretrained model')
 parser.add_argument('--text_threshold', default=0.7,
                     type=float, help='text confidence threshold')
@@ -55,7 +55,7 @@ parser.add_argument('--test_folder', default='../data',
                     type=str, help='đường dẫn tới ảnh đầu vào')
 parser.add_argument('--refine', default=True,
                     action='store_true', help='enable link refiner')
-parser.add_argument('--refiner_model', default='weights/craft_refiner_CTW1500.pth',
+parser.add_argument('--refiner_model', default='D:\Luan Van\Project\med-scan-backend\CRAFT\weights\craft_refiner_CTW1500.pth',
                     type=str, help='pretrained refiner model')
 
 args = parser.parse_args()
@@ -80,7 +80,8 @@ if not os.path.isdir(result_folder):
 
 if __name__ == '__main__':
     first = pd.DataFrame(columns=['0', '1', '2', '3', '4', '5', '6', '7'])
-    first.to_csv('../TextDetection/TextRecognition/data.csv', index=False)
+    first.to_csv(
+        'D:\Luan Van\Project\med-scan-backend\TextDetection\TextRecognition\data.csv', index=False)
     csv_columns = ['x_top_left', 'y_top_left', 'x_top_right', 'y_top_right',
                    'x_bot_right', 'y_bot_right', 'x_bot_left', 'y_bot_left']
     # load net
@@ -153,7 +154,7 @@ if __name__ == '__main__':
             data = np.array([[int(item[0][0]), int(item[0][1]), int(item[1][0]), int(
                 item[1][1]), int(item[2][0]), int(item[2][1]), int(item[3][0]), int(item[3][1])]])
             csvdata = pd.DataFrame(data, columns=csv_columns)
-            csvdata.to_csv('../TextDetection/TextRecognition/data.csv',
+            csvdata.to_csv('D:\Luan Van\Project\med-scan-backend\TextDetection\TextRecognition\data.csv',
                            index=False, mode='a', header=False)
         '''
         như vậy là đã phát hiện chữ cái và tọa độ 4 đỉnh của hình chữ nhật
