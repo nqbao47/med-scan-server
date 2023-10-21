@@ -79,7 +79,7 @@ if not os.path.isdir(result_folder):
     os.mkdir(result_folder)
 
 if __name__ == '__main__':
-    first = pd.DataFrame(columns=['0', '1', '2', '3', '4', '5', '6', '7', '8'])
+    first = pd.DataFrame(columns=['0', '1', '2', '3', '4', '5', '6', '7'])
     first.to_csv('../TextDetection/TextRecognition/data.csv', index=False)
     csv_columns = ['x_top_left', 'y_top_left', 'x_top_right', 'y_top_right',
                    'x_bot_right', 'y_bot_right', 'x_bot_left', 'y_bot_left']
