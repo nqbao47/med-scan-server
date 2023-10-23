@@ -63,13 +63,21 @@ def upload_image():
             medicine_names = [
                 row for row in csv_reader if row[-1] == "Medicine_Name"]
 
-            # Chuyển danh sách kết quả thành một chuỗi
-            result = "\n".join(",".join(row) for row in medicine_names)
+        # Nếu không có thông tin thuốc được tìm thấy
+        if not medicine_names:
+            return jsonify({'error': 'Không có thông tin thuốc được tìm thấy'})
 
-            if result:
-                return jsonify({'result': result})
-            else:
-                return jsonify({'error': 'Không có thông tin thuốc được tìm thấy'})
+        # Trích xuất các thông tin thuốc thành một danh sách
+        medicine_info = []
+        for row in medicine_names:
+            # Định dạng thông tin thuốc theo ý muốn của bạn
+            medicine = {
+                "ID": row[7],
+                "Medicine_Name": row[8]
+            }
+            medicine_info.append(medicine)
+
+        return jsonify({'medicine_info': medicine_info})
 
 
 # Enpoint để lấy Guided_line

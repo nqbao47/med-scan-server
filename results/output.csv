@@ -14,28 +14,28 @@
 14,162,520,162,520,180,14,180,xục bộ mạn; Tầng lipid máu hồn hợp; Rung nhì và cuốngnhi Suy tim ôn đinh; Các,NaN
 14,180,144,180,144,194,14,194,đồng máu đặc biệt khác,NaN
 16,210,112,212,111,229,15,227,Thuốc điều trị,NaN
-14,230,237,232,237,248,14,246,Spironolacton 'Spironelacton 23,NaN
+14,230,237,232,237,248,14,246,Spironolacton 'Spironelacton 23,Medicine_Name
 461,232,505,232,505,244,461,244,28-Viên,NaN
 49,248,144,248,144,265,49,265,sânguồng viên,NaN
 14,264,229,266,229,282,14,279,27. Gliclazid (Staclazide-60-MR 60mg),Medicine_Name
 461,266,505,266,505,280,461,280,56 Viên,NaN
 49,282,311,282,311,298,49,298,"sang 1 viên, chiều 1 viên, uồng trước ăn 30 phút",NaN
-13,297,257,300,257,316,13,313,- Acenocoumarol (AzENMAROL.11m 1991),NaN
+13,297,257,300,257,316,13,313,- Acenocoumarol (AzENMAROL.11m 1991),Medicine_Name
 461,301,502,301,502,313,461,313,33 viên,NaN
 49,317,269,317,269,334,49,334,"đôi uồng 1 viên, tối chủ nhật uống 2 vì",NaN
-14,333,273,336,273,350,14,347,Metformin (Giumeform 1000 XR 1001,NaN
+14,333,273,336,273,350,14,347,Metformin (Giumeform 1000 XR 1001,Medicine_Name
 461,336,505,336,505,348,461,348,56-Viên,NaN
 49,352,242,352,242,368,49,368,"sáng ường - viên,chiêu vông l viên",NaN
 13,368,228,370,227,386,13,383,- Losartan (savi Losatan 50 50mm,Medicine_Name
 461,370,505,370,505,384,461,384,56 Viên,NaN
 49,386,242,386,242,402,49,402,sang rồng 1 viên chiếu uống j viên,NaN
-14,402,178,405,178,420,14,417,Nebivoloi Khouma 5ms,NaN
+14,402,178,405,178,420,14,417,Nebivoloi Khouma 5ms,Medicine_Name
 461,404,505,404,505,417,461,417,28 Viên,NaN
 49,421,144,421,144,437,49,437,sang uồng                                                                          vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv,NaN
-14,438,248,440,247,454,14,453,Rosuvastatin ROTINVAST 20 20,NaN
+14,438,248,440,247,454,14,453,Rosuvastatin ROTINVAST 20 20,Medicine_Name
 461,440,502,440,502,452,461,452,14 viên,NaN
 49,453,159,457,158,473,48,470,chiêu vốn điện viên,NaN
-14,470,210,473,210,489,14,486,Acarbose BLUECOSE 100m,NaN
+14,470,210,473,210,489,14,486,Acarbose BLUECOSE 100m,Medicine_Name
 460,473,505,473,505,486,460,486,28 Viên,NaN
 49,489,196,493,195,509,49,505,chiếu uông i viên trong đó,NaN
 354,600,509,600,509,616,354,616,Ngày 06 tháng 09 năm 2023,NaN

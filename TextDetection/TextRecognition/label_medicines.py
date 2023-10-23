@@ -8,7 +8,7 @@ def label_medicines(text):
                       "Glumeferm", "Losartan",
                       "Savi", "Atorvastatin",
                       "Clopidogre1", "RIDLOR",
-                      "Amlo đipin", "Kavasdin", "Lufocin", "Bromhexin", "Paracetamol", "Ciprofloxacin", ]
+                      "Amlo đipin", "Kavasdin", "Lufocin", "Bromhexin", "Paracetamol", "Ciprofloxacin", "Acenocoumarol", "Spironolacton", "Metformin", "Giumeform", "Nebivoloi Khouma", "Rosuvastatin", "ROTINVAST", "Acarbose", "BLUECOSE"]
 
     # Thay vì chỉ định thì nên gọi danh sách tên thuốc từ database và tiến hành kiểm tra
 
