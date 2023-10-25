@@ -50,7 +50,6 @@ for slug in tqdm(slugs, total=len(slugs)):
     if response.status_code == 200:
         print('Crawl data {} success !!!'.format(slug))
         result.append(parser_product(response.json()))
-    # time.sleep(random.randrange(3, 5))
 
 df_product = pd.DataFrame(result)
 df_product.to_csv('crawled_data_ncds.csv', index=False)

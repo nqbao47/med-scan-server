@@ -103,10 +103,6 @@ if __name__ == '__main__':
         cudnn.benchmark = False
 
     net.eval()
-    # LinkRefiner Đoạn này code không chạy qua nên không cần đọc vì weight đã load ở cái bên trên
-    # còn refine để mặc định bên trên là False nên sẽ bị bỏ qua
-    # ------------------------------------------------------------------------------------------
-    # ------------------------------------------------------------------------------------------
     refine_net = None
     if args.refine:
         from refinenet import RefineNet
@@ -123,8 +119,6 @@ if __name__ == '__main__':
 
         refine_net.eval()
         args.poly = True
-    # ------------------------------------------------------------------------------------------
-    # ------------------------------------------------------------------------------------------
 
     t = time.time()
 
@@ -134,7 +128,6 @@ if __name__ == '__main__':
               len(image_list), image_path), end='\r')
         # ở đây đã dùng skimage.io.imread thay vì cv2.imread
         # chủ yếu đầu ra như thế sẽ làm cho ảnh định dạng với dạng RGB thay vì BGR, chỉ khác chút màu
-        # mục đích để load với kênh màu khác thì chưa rõ
         image = imgproc.loadImage(image_path)
 
         '''nhảy qua folder test và đọc lện tiếp
