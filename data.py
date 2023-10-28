@@ -1,35 +1,22 @@
 guide_line = [
     {
-        'step': 1,
-        'title': 'Bước 1: Cài đặt Ứng dụng',
-        'description': 'Trước tiên, bạn cần cài đặt ứng dụng Scan và Tìm kiếm Dược phẩm trên thiết bị của mình. Bạn có thể tải ứng dụng này từ cửa hàng ứng dụng của bạn, ví dụ: App Store cho iOS hoặc Google Play Store cho Android.'
+        "step": 1,
+        "title": "Tiết kiệm thời gian và công sức",
+        "description": "Hệ thống trích xuất hoá đơn có khả năng tự động trích xuất thông tin từ hoá đơn, giúp loại bỏ quy trình thủ công và việc ghi chép thủ công. Người dùng không cần phải nhập dữ liệu từ hoá đơn bằng tay, tiết kiệm rất nhiều thời gian và công sức.",
     },
     {
-        'step': 2,
-        'title': 'Bước 2: Quét Hoá đơn Thuốc',
-        'description': 'Sau khi cài đặt ứng dụng, mở nó và chọn tùy chọn "Quét Hoá đơn" hoặc "Scan Prescription". Đặt hoá đơn thuốc trước mặt của bạn và sử dụng camera của thiết bị để quét nó. Ứng dụng sẽ tự động nhận diện thông tin từ hoá đơn.'
+        "step": 2,
+        "title": "Độ chính xác cao",
+        "description": "Hệ thống trích xuất hoá đơn sử dụng trí tuệ nhân tạo và các thuật toán thông minh để trích xuất thông tin. Điều này giúp giảm thiểu sai sót do con người gây ra. Các hệ thống này có khả năng nhận dạng văn bản và dữ liệu số với độ chính xác cao.",
     },
     {
-        'step': 3,
-        'title': 'Bước 3: Tìm Kiếm Dược phẩm',
-        'description': 'Sau khi quét hoá đơn thành công, bạn sẽ thấy thông tin về các loại thuốc trên màn hình. Bạn có thể chọn một loại thuốc cụ thể để xem thông tin chi tiết về nó, bao gồm tên, liều lượng, giá cả và hướng dẫn sử dụng.'
-    }
-]
-
-
-medicines = [
-    {
-        'id': 1,
-        'name': 'Paracetamol',
-        'dosage': '500mg',
-        'indication': 'Pain relief',
-        'side_effects': 'None'
+        "step": 3,
+        "title": "Quản lý dễ dàng",
+        "description": "Tích hợp hệ thống trích xuất hoá đơn vào quy trình làm việc giúp dễ dàng quản lý và theo dõi thông tin hoá đơn thuốc. Người dùng có thể lưu trữ và tìm kiếm thông tin hoá đơn một cách hiệu quả.",
     },
     {
-        'id': 2,
-        'name': 'Ibuprofen',
-        'dosage': '200mg',
-        'indication': 'Pain relief, anti-inflammatory',
-        'side_effects': 'Stomach irritation'
-    }
+        "step": 3,
+        "title": "Tăng năng suất:",
+        "description": "Nhờ tự động hóa quy trình trích xuất dữ liệu hoá đơn, người dùng có thể tập trung vào công việc quan trọng hơn, cải thiện năng suất.",
+    },
 ]

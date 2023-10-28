@@ -1,14 +1,32 @@
-
-
 # Hàm để gán nhãn cho thuốc
 def label_medicines(text):
     # Cách tạm thời
     # Danh sách các tên thuốc
-    medicine_names = ["Gliclazid", "metformin",
-                      "Glumeferm", "Losartan",
-                      "Savi", "Atorvastatin",
-                      "Clopidogre1", "RIDLOR",
-                      "Amlo đipin", "Kavasdin", "Lufocin", "Bromhexin", "Paracetamol", "Ciprofloxacin", "Acenocoumarol", "Spironolacton", "Metformin", "Giumeform", "Nebivoloi Khouma", "Rosuvastatin", "ROTINVAST", "Acarbose", "BLUECOSE"]
+    medicine_names = [
+        "Gliclazid",
+        "metformin",
+        "Glumeferm",
+        "Losartan",
+        "Savi",
+        "Atorvastatin",
+        "Clopidogre1",
+        "RIDLOR",
+        "Amlo đipin",
+        "Kavasdin",
+        "Lufocin",
+        "Bromhexin",
+        "Paracetamol",
+        "Ciprofloxacin",
+        "Acenocoumarol",
+        "Spironolacton",
+        "Metformin",
+        "Giumeform",
+        "Nebivoloi Khouma",
+        "Rosuvastatin",
+        "ROTINVAST",
+        "Acarbose",
+        "BLUECOSE",
+    ]
 
     # Thay vì chỉ định thì nên gọi danh sách tên thuốc từ database và tiến hành kiểm tra
 
