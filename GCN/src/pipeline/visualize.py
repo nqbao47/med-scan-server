@@ -1,7 +1,13 @@
 import cv2
-import pandas as pd
 import numpy as np
+import pandas as pd
 
+# image_path = "../../Training/data/main_data/raw/img/"
+# box_path = "../../Training/data/main_data/raw/box/"
+
+# labels_path = "../../Training/data/main_data/labeling/"
+
+# figures_path = "../../figures/"
 
 image_path = "../../data/raw/img/"
 box_path = "../../data/raw/box/"
@@ -13,24 +19,24 @@ figures_path = "../../figures/"
 
 def visualize_textboxes(img_name, save_img=False):
     """returns invoices images with textboxes"""
-    image = image_path + img_name + '.jpg'
-    box = box_path + img_name + '.csv'
+    image = image_path + img_name + ".jpg"
+    box = box_path + img_name + ".csv"
     img = cv2.imread(image)
-    with open(box, encoding='utf-8') as topo_file:
+    with open(box, encoding="utf-8") as topo_file:
         for line in topo_file:
-            coor = line.split(',')
+            coor = line.split(",")
             # print(coor)
-            x1, y1, x3, y3 = int(coor[0]), int(
-                coor[1]), int(coor[4]), int(coor[5])
-            text = coor[8].strip('\n').strip('\'')
+            x1, y1, x3, y3 = int(coor[0]), int(coor[1]), int(coor[4]), int(coor[5])
+            text = coor[8].strip("\n").strip("'")
             # print(x1,y1,x3,y3,text)
 
             img = cv2.rectangle(img, (x1, y1), (x3, y3), (255, 0, 0), 1)
-            img = cv2.putText(img, text, (x1, y1 - 1),
-                              cv2.FONT_HERSHEY_DUPLEX, 0.4, (0, 0, 255), 1)
+            img = cv2.putText(
+                img, text, (x1, y1 - 1), cv2.FONT_HERSHEY_DUPLEX, 0.4, (0, 0, 255), 1
+            )
 
     if save_img:
-        cv2.imwrite(figures_path + img_name + '_withtext.jpg', img)
+        cv2.imwrite(figures_path + img_name + "_withtext.jpg", img)
 
     # cv2.imshow('image', img)
     # cv2.waitKey(0)
@@ -41,8 +47,8 @@ def visualize_textboxes(img_name, save_img=False):
 
 def visualize_labels(img_name, save_img=False):
     """returns invoices with manually annontated labels"""
-    image = image_path + img_name + '.jpg'
-    box_labels = labels_path + img_name + '.csv'
+    image = image_path + img_name + ".jpg"
+    box_labels = labels_path + img_name + ".csv"
     df = pd.read_csv(box_labels)
     df.dropna(inplace=True)
     img = cv2.imread(image)
@@ -53,11 +59,12 @@ def visualize_labels(img_name, save_img=False):
         x1, y1, x3, y3 = rows[0], rows[1], rows[4], rows[5]
 
         img = cv2.rectangle(img, (x1, y1), (x3, y3), (255, 0, 0), 1)
-        img = cv2.putText(img, text, (x1, y1 - 1),
-                          cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 255), 1)
+        img = cv2.putText(
+            img, text, (x1, y1 - 1), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 255), 1
+        )
 
     if save_img:
-        cv2.imwrite(figures_path + img_name + '_withlabels.jpg', img)
+        cv2.imwrite(figures_path + img_name + "_withlabels.jpg", img)
 
     # cv2.imshow('image', img)
     # cv2.waitKey(0)
@@ -67,5 +74,5 @@ def visualize_labels(img_name, save_img=False):
 
 
 if __name__ == "__main__":
-    visualize_textboxes('999', save_img=True)
-    visualize_labels('999', save_img=True)
+    visualize_textboxes("339", save_img=True)
+    visualize_labels("339", save_img=True)

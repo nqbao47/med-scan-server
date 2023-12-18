@@ -1,0 +1,24 @@
+{
+    "medicine": "Spironolacton (Spironolacton 25mg)"
+}
+{
+    "medicine": "Gliclazid (Staclazide 60 MR 60mg)"
+}
+{
+    "medicine": "Acenocoumarol (AZENMAROL 1 1mg)"
+}
+{
+    "medicine": "Metformin (Glume form 1000 XR 1000mg)"
+}
+{
+    "medicine": "Losartan (SaVi Losartan 50 50mg)"
+}
+{
+    "medicine": "Nebivolol (Khouma 5mg)"
+}
+{
+    "medicine": "Rosuvastatin (ROTINVAST 20 20mg)"
+}
+{
+    "medicine": "Acarbose (BLUECOSE 100mg)"
+}

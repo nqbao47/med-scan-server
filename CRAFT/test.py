@@ -8,21 +8,23 @@ MIT License
 # -*- coding: utf-8 -*-
 
 
-
-
 import time
-import torch
-import torch.nn as nn
-import torch.backends.cudnn as cudnn
-from torch.autograd import Variable
-from PIL import Image
-import cv2
-from skimage import io
-import numpy as np
-import craft_utils
-import imgproc
-from craft import CRAFT
 from collections import OrderedDict
+
+import craft_utils
+import cv2
+import imgproc
+import numpy as np
+import torch
+import torch.backends.cudnn as cudnn
+import torch.nn as nn
+from PIL import Image
+from skimage import io
+from torch.autograd import Variable
+
+from craft import CRAFT
+
+
 def copyStateDict(state_dict):
     if list(state_dict.keys())[0].startswith("module"):
         start_idx = 1
@@ -35,26 +37,40 @@ def copyStateDict(state_dict):
     return new_state_dict
 
 
-def test_net(net, image, text_threshold, link_threshold, low_text, cuda, poly, args, refine_net=None):
+def test_net(
+    net,
+    image,
+    text_threshold,
+    link_threshold,
+    low_text,
+    cuda,
+    poly,
+    args,
+    refine_net=None,
+):
     t0 = time.time()
     # resize
     # cứ biết là lấy ra kích thước ảnh mới , tỉ lệ với chiều rộng chiều cao ảnh, kích thước bản đồ nhiệt
     img_resized, target_ratio, size_heatmap = imgproc.resize_aspect_ratio(
-        image, args.canvas_size, interpolation=cv2.INTER_LINEAR, mag_ratio=args.mag_ratio)
+        image,
+        args.canvas_size,
+        interpolation=cv2.INTER_LINEAR,
+        mag_ratio=args.mag_ratio,
+    )
 
     # đây chính là lấy tỉ lệ với chiều rộng và chiều cao ảnh còn là gì thì xuống xem
     ratio_h = ratio_w = 1 / target_ratio
     # preprocessing Bước tiền xử lý
     x = imgproc.normalizeMeanVariance(img_resized)
-    '''
+    """
     chú ý rằng tensor trong pytorch bằng với array trong numpy
     trong 2 lệnh tiếp theo 
     đầu tiên là thay đổi thứ tự và dòng tiếp tăng số chiều của nó lên
     mục đích chưa rõ
     https://github.com/pytorch/pytorch/issues/44541
-    '''
-    x = torch.from_numpy(x).permute(2, 0, 1)    # [h, w, c] to [c, h, w]
-    x = Variable(x.unsqueeze(0))                # [c, h, w] to [b, c, h, w]
+    """
+    x = torch.from_numpy(x).permute(2, 0, 1)  # [h, w, c] to [c, h, w]
+    x = Variable(x.unsqueeze(0))  # [c, h, w] to [b, c, h, w]
 
     if cuda:
         x = x.cpu()
@@ -83,7 +99,8 @@ def test_net(net, image, text_threshold, link_threshold, low_text, cuda, poly, a
     # boxes để lấy tọa độ, polys có vẻ là dương tự nhưng mà dưới dạng weight hoặc cách implement khác
     #
     boxes, polys, det_scores = craft_utils.getDetBoxes(
-        score_text, score_link, text_threshold, link_threshold, low_text, poly)
+        score_text, score_link, text_threshold, link_threshold, low_text, poly
+    )
 
     # coordinate adjustment gọi hàm từ file craft_utils
     boxes = craft_utils.adjustResultCoordinates(boxes, ratio_w, ratio_h)

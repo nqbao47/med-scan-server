@@ -11,14 +11,15 @@ MIT License
 # unwarp corodinates
 
 
-
-
-import numpy as np
-import cv2
 import math
+
+import cv2
+import numpy as np
+
+
 def warpCoord(Minv, pt):
     out = np.matmul(Minv, (pt[0], pt[1], 1))
-    return np.array([out[0]/out[2], out[1]/out[2]])
+    return np.array([out[0] / out[2], out[1] / out[2]])
 
 
 """ end of auxilary functions """
@@ -36,7 +37,8 @@ def getDetBoxes_core(textmap, linkmap, text_threshold, link_threshold, low_text)
 
     text_score_comb = np.clip(text_score + link_score, 0, 1)
     nLabels, labels, stats, centroids = cv2.connectedComponentsWithStats(
-        text_score_comb.astype(np.uint8), connectivity=4)
+        text_score_comb.astype(np.uint8), connectivity=4
+    )
 
     det = []
     det_scores = []
@@ -69,13 +71,15 @@ def getDetBoxes_core(textmap, linkmap, text_threshold, link_threshold, low_text)
             ex = img_w
         if ey >= img_h:
             ey = img_h
-        kernel = cv2.getStructuringElement(
-            cv2.MORPH_RECT, (1 + niter, 1 + niter))
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1 + niter, 1 + niter))
         segmap[sy:ey, sx:ex] = cv2.dilate(segmap[sy:ey, sx:ex], kernel)
 
         # make box
-        np_contours = np.roll(np.array(np.where(segmap != 0)),
-                              1, axis=0).transpose().reshape(-1, 2)
+        np_contours = (
+            np.roll(np.array(np.where(segmap != 0)), 1, axis=0)
+            .transpose()
+            .reshape(-1, 2)
+        )
         rectangle = cv2.minAreaRect(np_contours)
         box = cv2.boxPoints(rectangle)
 
@@ -89,7 +93,7 @@ def getDetBoxes_core(textmap, linkmap, text_threshold, link_threshold, low_text)
 
         # make clock-wise order
         startidx = box.sum(axis=1).argmin()
-        box = np.roll(box, 4-startidx, 0)
+        box = np.roll(box, 4 - startidx, 0)
         box = np.array(box)
 
         det.append(box)
@@ -110,8 +114,9 @@ def getPoly_core(boxes, labels, mapper, linkmap):
     polys = []
     for k, box in enumerate(boxes):
         # size filter for small instance
-        w, h = int(np.linalg.norm(box[0] - box[1]) +
-                   1), int(np.linalg.norm(box[1] - box[2]) + 1)
+        w, h = int(np.linalg.norm(box[0] - box[1]) + 1), int(
+            np.linalg.norm(box[1] - box[2]) + 1
+        )
         if w < 10 or h < 10:
             polys.append(None)
             continue
@@ -119,8 +124,7 @@ def getPoly_core(boxes, labels, mapper, linkmap):
         # warp image
         tar = np.float32([[0, 0], [w, 0], [w, h], [0, h]])
         M = cv2.getPerspectiveTransform(box, tar)
-        word_label = cv2.warpPerspective(
-            labels, M, (w, h), flags=cv2.INTER_NEAREST)
+        word_label = cv2.warpPerspective(labels, M, (w, h), flags=cv2.INTER_NEAREST)
         try:
             Minv = np.linalg.inv(M)
         except:
@@ -152,8 +156,8 @@ def getPoly_core(boxes, labels, mapper, linkmap):
 
         # get pivot points with fixed length
         tot_seg = num_cp * 2 + 1
-        seg_w = w / tot_seg     # segment width
-        pp = [None] * num_cp    # init pivot points
+        seg_w = w / tot_seg  # segment width
+        pp = [None] * num_cp  # init pivot points
         cp_section = [[0, 0]] * tot_seg
         seg_height = [0] * num_cp
         seg_num = 0
@@ -165,8 +169,10 @@ def getPoly_core(boxes, labels, mapper, linkmap):
                 # average previous segment
                 if num_sec == 0:
                     break
-                cp_section[seg_num] = [cp_section[seg_num][0] /
-                                       num_sec, cp_section[seg_num][1] / num_sec]
+                cp_section[seg_num] = [
+                    cp_section[seg_num][0] / num_sec,
+                    cp_section[seg_num][1] / num_sec,
+                ]
                 num_sec = 0
 
                 # reset variables
@@ -176,22 +182,23 @@ def getPoly_core(boxes, labels, mapper, linkmap):
             # accumulate center points
             cy = (sy + ey) * 0.5
             cur_h = ey - sy + 1
-            cp_section[seg_num] = [cp_section[seg_num]
-                                   [0] + x, cp_section[seg_num][1] + cy]
+            cp_section[seg_num] = [
+                cp_section[seg_num][0] + x,
+                cp_section[seg_num][1] + cy,
+            ]
             num_sec += 1
 
             if seg_num % 2 == 0:
                 continue  # No polygon area
 
             if prev_h < cur_h:
-                pp[int((seg_num - 1)/2)] = (x, cy)
-                seg_height[int((seg_num - 1)/2)] = cur_h
+                pp[int((seg_num - 1) / 2)] = (x, cy)
+                seg_height[int((seg_num - 1) / 2)] = cur_h
                 prev_h = cur_h
 
         # processing last segment
         if num_sec != 0:
-            cp_section[-1] = [cp_section[-1][0] /
-                              num_sec, cp_section[-1][1] / num_sec]
+            cp_section[-1] = [cp_section[-1][0] / num_sec, cp_section[-1][1] / num_sec]
 
         # pass if num of pivots is not sufficient or segment widh is smaller than character height
         if None in pp or seg_w < np.max(seg_height) * 0.25:
@@ -206,37 +213,55 @@ def getPoly_core(boxes, labels, mapper, linkmap):
         for i, (x, cy) in enumerate(pp):
             dx = cp_section[i * 2 + 2][0] - cp_section[i * 2][0]
             dy = cp_section[i * 2 + 2][1] - cp_section[i * 2][1]
-            if dx == 0:     # gradient if zero
+            if dx == 0:  # gradient if zero
                 new_pp.append([x, cy - half_char_h, x, cy + half_char_h])
                 continue
-            rad = - math.atan2(dy, dx)
+            rad = -math.atan2(dy, dx)
             c, s = half_char_h * math.cos(rad), half_char_h * math.sin(rad)
             new_pp.append([x - s, cy - c, x + s, cy + c])
 
         # get edge points to cover character heatmaps
         isSppFound, isEppFound = False, False
-        grad_s = (pp[1][1] - pp[0][1]) / (pp[1][0] - pp[0][0]) + \
-            (pp[2][1] - pp[1][1]) / (pp[2][0] - pp[1][0])
-        grad_e = (pp[-2][1] - pp[-1][1]) / (pp[-2][0] - pp[-1][0]) + \
-            (pp[-3][1] - pp[-2][1]) / (pp[-3][0] - pp[-2][0])
+        grad_s = (pp[1][1] - pp[0][1]) / (pp[1][0] - pp[0][0]) + (
+            pp[2][1] - pp[1][1]
+        ) / (pp[2][0] - pp[1][0])
+        grad_e = (pp[-2][1] - pp[-1][1]) / (pp[-2][0] - pp[-1][0]) + (
+            pp[-3][1] - pp[-2][1]
+        ) / (pp[-3][0] - pp[-2][0])
         for r in np.arange(0.5, max_r, step_r):
             dx = 2 * half_char_h * r
             if not isSppFound:
                 line_img = np.zeros(word_label.shape, dtype=np.uint8)
                 dy = grad_s * dx
                 p = np.array(new_pp[0]) - np.array([dx, dy, dx, dy])
-                cv2.line(line_img, (int(p[0]), int(p[1])),
-                         (int(p[2]), int(p[3])), 1, thickness=1)
-                if np.sum(np.logical_and(word_label, line_img)) == 0 or r + 2 * step_r >= max_r:
+                cv2.line(
+                    line_img,
+                    (int(p[0]), int(p[1])),
+                    (int(p[2]), int(p[3])),
+                    1,
+                    thickness=1,
+                )
+                if (
+                    np.sum(np.logical_and(word_label, line_img)) == 0
+                    or r + 2 * step_r >= max_r
+                ):
                     spp = p
                     isSppFound = True
             if not isEppFound:
                 line_img = np.zeros(word_label.shape, dtype=np.uint8)
                 dy = grad_e * dx
                 p = np.array(new_pp[-1]) + np.array([dx, dy, dx, dy])
-                cv2.line(line_img, (int(p[0]), int(p[1])),
-                         (int(p[2]), int(p[3])), 1, thickness=1)
-                if np.sum(np.logical_and(word_label, line_img)) == 0 or r + 2 * step_r >= max_r:
+                cv2.line(
+                    line_img,
+                    (int(p[0]), int(p[1])),
+                    (int(p[2]), int(p[3])),
+                    1,
+                    thickness=1,
+                )
+                if (
+                    np.sum(np.logical_and(word_label, line_img)) == 0
+                    or r + 2 * step_r >= max_r
+                ):
                     epp = p
                     isEppFound = True
             if isSppFound and isEppFound:
@@ -266,7 +291,8 @@ def getPoly_core(boxes, labels, mapper, linkmap):
 
 def getDetBoxes(textmap, linkmap, text_threshold, link_threshold, low_text, poly=False):
     boxes, labels, mapper, det_scores = getDetBoxes_core(
-        textmap, linkmap, text_threshold, link_threshold, low_text)
+        textmap, linkmap, text_threshold, link_threshold, low_text
+    )
 
     if poly:
         polys = getPoly_core(boxes, labels, mapper, linkmap)
@@ -300,6 +326,7 @@ def adjustResultCoordinates(polys, ratio_w, ratio_h, ratio_net=2):
             adjusted_polys.append(None)
 
     return adjusted_polys
+
 
 # def adjustResultCoordinates(polys, ratio_w, ratio_h, ratio_net=2):
 #     if len(polys) > 0:

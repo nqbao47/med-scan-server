@@ -6,14 +6,27 @@ jpg is the image file
 csv is the file containing the box cordinates
 """
 
+
 def noext(f):
     return path.splitext(f.name)[0]
 
+
 raw_task1_files = list(
-    sorted(scandir("0325updated.task1train(626p)"), key=lambda f: f.name)
+    sorted(
+        scandir(
+            # "D:/Luan Van/Project/med-scan-backend/Training/data/main_data/sets/train1"
+            "../../SROIE2019/0325updated.task1train(626p)"
+        ),
+        key=lambda f: f.name,
+    )
 )
 raw_task2_files = list(
-    sorted(scandir("0325updated.task2train(626p)"), key=lambda f: f.name)
+    sorted(
+        scandir(
+            "D:/Luan Van/Project/med-scan-backend/GCN/data/external/SROIE2019/0325updated.task2train(626p)"
+        ),
+        key=lambda f: f.name,
+    )
 )
 
 jpg_files = [f for f in raw_task1_files if f.name.endswith("jpg")]
@@ -26,5 +39,11 @@ for i, (f_jpg, f_csv) in enumerate(zip(jpg_files, csv_files)):
 
     print(f"{i:03d}", f_jpg, f_csv)
 
-    replace(f_jpg.path, f"data/raw/img{i:03d}.jpg")
-    replace(f_csv.path, f"data/raw/box{i:03d}.csv")
+    replace(
+        f_jpg.path,
+        f"D:/Luan Van/Project/med-scan-backend/Training/data/main_data/test_raw/img{i:03d}.jpg",
+    )
+    replace(
+        f_csv.path,
+        f"D:/Luan Van/Project/med-scan-backend/Training/data/main_data/test_raw/box{i:03d}.csv",
+    )
